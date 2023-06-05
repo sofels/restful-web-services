@@ -14,17 +14,25 @@ public class UserDaoService {
     // To be able to retreive all users, save user and find one user
 
     private static List<User> users = new ArrayList<>();
+    private static Integer usersCounts=0;
 
     //creates a static list that is generated at run time
     static {
-        users.add(new User(1, "Adam", LocalDate.now().minusYears(30)));
-        users.add(new User(2, "Eve", LocalDate.now().minusYears(25)));
-        users.add(new User(3, "Jim", LocalDate.now().minusYears(20)));
+        users.add(new User(++usersCounts, "Adam", LocalDate.now().minusYears(30)));
+        users.add(new User(++usersCounts, "Eve", LocalDate.now().minusYears(25)));
+        users.add(new User(++usersCounts, "Jim", LocalDate.now().minusYears(20)));
     }
 
     //returns all the users
     public List<User> findAll(){
         return users;
+    }
+
+    public User save(User user){
+        user.setId(++usersCounts);
+        users.add(user);
+        return user;
+
     }
 
     public User findOne(int id){
