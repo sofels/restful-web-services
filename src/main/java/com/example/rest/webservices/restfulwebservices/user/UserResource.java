@@ -32,6 +32,11 @@ public class UserResource {
 
     }
 
+    @DeleteMapping(path = "users/{id}")
+    public void deleteUser(@PathVariable int id){
+        service.deleteById(id);
+    }
+
     //create a user using post request
     @PostMapping("users")
     public ResponseEntity<User> createUser(@RequestBody User user){
